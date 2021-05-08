@@ -34,6 +34,22 @@ LOCATION = (
 )
 
 
+PRODI = (
+    ('Teknik Informatika', 'Teknik Informatika'),
+    ('Teknik Elektro', 'Teknik Elektro'),
+    ('Teknologi Pangan', 'Teknologi Pangan'),
+    ('Teknik Geofisika', 'Teknik Geofisika'),
+    ('Teknik Sipil', 'Teknik Sipil'),
+    ('Teknik Arsitektur', 'Teknik Arsitektur'),
+    ('Teknik Mesin', 'Teknik Mesin'),
+    ('Biologi', 'Biologi'),
+    ('Farmasi', 'Farmasi'),
+    ('Perencanaan Wilayah dan Kota', 'Perancangan Wilayah dan Kota'),
+    ('LAINNYA', 'LAINNYA'),
+
+)
+
+
 class Barang(models.Model):
     class Meta:
         db_table = 'barang'  # nama tabel
