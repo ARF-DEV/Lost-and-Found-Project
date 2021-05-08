@@ -19,10 +19,6 @@ class LaporanTable(admin.ModelAdmin):
         return obj.barang_id.jenis_barang
 
 # Register your models here.
-admin.site.register(
-    Barang, BarangTable
-)
+admin.site.register(Barang, BarangTable)
 
-admin.site.register(
-    Laporan, LaporanTable
-)
+admin.site.register(Laporan, LaporanTable)

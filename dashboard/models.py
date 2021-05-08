@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 # Model Barang
 KATEGORI = (
     ('Elektronik', 'Elektronik'),
-    ('KATEGORI 2', 'KATEGORI 2'),
-    ('KATEGORI 3', 'KATEGORI 3'),
-    ('KATEGORI 4', 'KATEGORI 4'),
+    ('Alat Tulis', 'Alat Tulis'),
+    ('Buku', 'Buku'),
+    ('Kunci Kendaraan', 'Kunci Kendaraan'),
     ('KATEGORI 5', 'KATEGORI 5'),
     ('KATEGORI 6', 'KATEGORI 6'),
 )
@@ -37,15 +37,20 @@ LOCATION = (
 class Barang(models.Model):
     class Meta:
         db_table = 'barang'  # nama tabel
+        verbose_name_plural = 'Daftar Barang'
 
     nama_barang = models.CharField(max_length=20, null=True)
-    jenis_barang = models.CharField(max_length=10, choices=KATEGORI, null=True)
+    jenis_barang = models.CharField(max_length=25, choices=KATEGORI, null=True)
 
     def __str__(self):
         return f'{self.nama_barang} - {self.id}'
     # ------------------------- punya laporan---------------------------
 
 class Laporan(models.Model):
+    class Meta:
+        db_table = 'laporan'  # nama tabel
+        verbose_name_plural = 'Daftar Laporan'
+
     status = models.CharField(max_length=10, choices=STATUS, null=True)
     isSolved = models.BooleanField(default=False)
     deskripsi_barang = models.TextField(null=True)
@@ -63,4 +68,7 @@ class Laporan(models.Model):
 
     #id_admin = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_admin', default='')
     #id_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='barang', null=True, default=None)
+
+
+
 
