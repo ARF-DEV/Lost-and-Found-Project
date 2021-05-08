@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Barang, Laporan
+from .models import Barang, Laporan, Prodi
 
 admin.site.site_header = 'Lost-Found Admin Dashboard'
 
@@ -22,3 +22,4 @@ class LaporanTable(admin.ModelAdmin):
 admin.site.register(Barang, BarangTable)
 
 admin.site.register(Laporan, LaporanTable)
+admin.site.register(Prodi)

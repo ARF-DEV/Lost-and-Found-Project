@@ -30,9 +30,19 @@ LOCATION = (
     ('LABTEK 3', 'LABTEK 3'),
     ('GKU 1', 'GKU 1'),
     ('LAINNYA', 'LAINNYA'),
-
 )
-
+PRODI = (
+    (1, 'Teknik Informatika'),
+    (2, 'Teknik Elektro'),
+    (3, 'Teknologi Pangan'),
+    (4, 'Teknik Geofisika'),
+    (5, 'Teknik Sipil'),
+    (6, 'Teknik Arsitektur'),
+    (7, 'Teknik Mesin'),
+    (8, 'Biologi'),
+    (9, 'Farmasi'),
+    (10, 'Perencanaan Wilayah dan Kota'),
+)
 
 class Barang(models.Model):
     class Meta:
@@ -69,6 +79,13 @@ class Laporan(models.Model):
     #id_admin = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_admin', default='')
     #id_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='barang', null=True, default=None)
 
+class Prodi(models.Model):
+    class Meta:
+        db_table = 'Program-studi'  # nama tabel
+        verbose_name_plural = 'Daftar Program Studi'
 
+    nama_prodi = models.CharField(max_length=50)
+    #userid -belom
+    #adminid -belom
 
 
