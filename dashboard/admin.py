@@ -9,12 +9,14 @@ class BarangTable(admin.ModelAdmin):
     list_filter = ["jenis_barang"]
 
 class LaporanTable(admin.ModelAdmin):
+    list_display = ["nama_barang", "jenis_barang","tgl_laporan", "lokasi", "isSolved", "status"]
+    list_filter = [ "lokasi", "tgl_laporan", "isSolved", "status","barang_id__jenis_barang"]
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super(LaporanTable, self).get_form(request, obj, **kwargs)
-        form.fields['theme'].queryset = Theme.objects.filter(name__iexact='company')
-        return form
+    def nama_barang(self, obj):
+        return obj.barang_id.nama_barang
 
+    def jenis_barang(self, obj):
+        return obj.barang_id.jenis_barang
 
 # Register your models here.
 admin.site.register(
