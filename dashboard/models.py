@@ -11,14 +11,26 @@ KATEGORI = (
     ('KATEGORI 5', 'KATEGORI 5'),
     ('KATEGORI 6', 'KATEGORI 6'),
 )
+
+
 STATUS = (
     ('FOUND', 'FOUND'),
     ('LOST', 'LOST'),
 )
 
 LOCATION = (
-    ('FOUND', 'FOUND'),
-    ('LOST', 'LOST'),
+    ('GEDUNG A', 'GEDUNG A'),
+    ('GEDUNG B', 'GEDUNG B'),
+    ('GEDUNG C', 'GEDUNG C'),
+    ('GEDUNG D', 'GEDUNG D'),
+    ('GEDUNG E', 'GEDUNG E'),
+    ('GEDUNG F', 'GEDUNG F'),
+    ('LABTEK 1', 'LABTEK 1'),
+    ('LABTEK 2', 'LABTEK 2'),
+    ('LABTEK 3', 'LABTEK 3'),
+    ('GKU 1', 'GKU 1'),
+    ('LAINNYA', 'LAINNYA'),
+
 )
 
 
@@ -34,6 +46,7 @@ class Barang(models.Model):
     isSolved = models.BooleanField(default=False)
     deskripsi_barang = models.TextField(null=True)
     tgl_laporan = models.DateField(auto_now_add=True, null=True)
+    lokasi = models.CharField(max_length=10, choices=LOCATION, null=True)
 
     #userid -belom
     #adminid -belom
