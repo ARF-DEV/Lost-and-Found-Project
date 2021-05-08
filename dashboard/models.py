@@ -57,6 +57,8 @@ class Laporan(models.Model):
 
     def __str__(self):
         return f'{self.barang_id.nama_barang} - {self.tgl_laporan} - {self.lokasi}'
+class Prodi(models.Model):
+    nama_prodi = models.CharField(max_length=20, choices=STATUS, null=True)
     #userid -belom
     #adminid -belom
     # ------------------------- punya laporan---------------------------
