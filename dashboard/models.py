@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 # Model Barang
@@ -41,13 +41,22 @@ class Barang(models.Model):
     nama_barang = models.CharField(max_length=20, null=True)
     jenis_barang = models.CharField(max_length=10, choices=KATEGORI, null=True)
 
+    def __str__(self):
+        return f'{self.nama_barang} - {self.id}'
     # ------------------------- punya laporan---------------------------
+
+class Laporan(models.Model):
     status = models.CharField(max_length=10, choices=STATUS, null=True)
     isSolved = models.BooleanField(default=False)
     deskripsi_barang = models.TextField(null=True)
     tgl_laporan = models.DateField(auto_now_add=True, null=True)
     lokasi = models.CharField(max_length=10, choices=LOCATION, null=True)
+    
+    barang_id = models.ForeignKey(Barang, on_delete=models.CASCADE, related_name='laporan', null=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='laporan', null=True)
 
+    def __str__(self):
+        return f'{self.barang_id.nama_barang} - {self.tgl_laporan} - {self.lokasi}'
     #userid -belom
     #adminid -belom
     # ------------------------- punya laporan---------------------------
@@ -55,5 +64,3 @@ class Barang(models.Model):
     #id_admin = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_admin', default='')
     #id_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='barang', null=True, default=None)
 
-    def __str__(self):
-        return f'{self.nama_barang} - {self.id}'
