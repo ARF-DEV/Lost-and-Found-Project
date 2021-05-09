@@ -1,7 +1,9 @@
 {% extends 'partials/base.html' %}
 {% block title %} Found Page {% endblock %} 
+{% load crispy_forms_tags %}
 {% block content %} 
 {% include 'partials/topnav.html' %}
+
     <!--Table-->
     <div class="container">
         <div class="row my-4">
@@ -9,8 +11,9 @@
                 <div class="border bg-white p-3">
                     <h4>Add Products</h4>
                     <hr>
-                    <form method="POST">
-                        
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
                         <input class="btn btn-success btn-block" type="submit" value="Add Product">
 
                     </form>

@@ -49,8 +49,32 @@ def found(request):
     #items = Laporan.objects.raw(db_query)
     items = Laporan.objects.filter(status='found')
 
+    #-------------------- Laporan Form-------------------
+    if request.method == 'POST':
+        form = LaporanForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_barang = Barang(
+                nama_barang = form.cleaned_data['nama_barang'],
+                jenis_barang = form.cleaned_data['jenis_barang']
+            )
+            new_barang.save()
+            new_laporan = Laporan(
+                status = form.cleaned_data['status'],
+                deskripsi_barang = form.cleaned_data['deskripsi'],
+                lokasi = form.cleaned_data['lokasi'],
+                image = form.cleaned_data.get('foto'),
+                    
+                barang_id = new_barang,
+                user_id = request.user
+            )
+            new_laporan.save()
+    else:
+        form = LaporanForm()
+    #-------------------- END Laporan Form-------------------
+    
     context = {
         'items': items,
+        'form' : form,
     }
 
     return render(request, 'dashboard/found.html', context)
@@ -65,8 +89,32 @@ def lost(request):
     #items = Laporan.objects.raw(db_query)
     items = Laporan.objects.filter(status='lost')
 
+#-------------------- Laporan Form-------------------
+    if request.method == 'POST':
+        form = LaporanForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_barang = Barang(
+                nama_barang = form.cleaned_data['nama_barang'],
+                jenis_barang = form.cleaned_data['jenis_barang']
+            )
+            new_barang.save()
+            new_laporan = Laporan(
+                status = form.cleaned_data['status'],
+                deskripsi_barang = form.cleaned_data['deskripsi'],
+                lokasi = form.cleaned_data['lokasi'],
+                image = form.cleaned_data.get('foto'),
+                    
+                barang_id = new_barang,
+                user_id = request.user
+            )
+            new_laporan.save()
+    else:
+        form = LaporanForm()
+    #-------------------- END Laporan Form-------------------
+
     context = {
         'items': items,
+        'form' : form,
     }
     return render(request, 'dashboard/lost.html', context)
 

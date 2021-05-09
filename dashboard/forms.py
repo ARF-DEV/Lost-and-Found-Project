@@ -4,7 +4,6 @@ from .models import Laporan, STATUS, LOCATION, KATEGORI
 
 
 class LaporanForm(forms.Form):
-    
     nama_barang = forms.CharField(max_length=20)
     jenis_barang = forms.ChoiceField(choices=KATEGORI)
 

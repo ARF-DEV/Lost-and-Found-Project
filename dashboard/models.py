@@ -68,7 +68,7 @@ class Laporan(models.Model):
 
 class Prodi(models.Model):
     class Meta:
-        db_table = 'Program-studi'  # nama tabel
+        db_table = 'program-studi'  # nama tabel
         verbose_name_plural = 'Daftar Program Studi'
 
     nama_prodi = models.CharField(max_length=50)
