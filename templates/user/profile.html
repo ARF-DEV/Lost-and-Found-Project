@@ -24,26 +24,26 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">Name</th>
-                                            <td>Mark</td>
+                                            <td>{{ user.username }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Email</th>
-                                            <td>mark123@gmail.com</td>
+                                            <td>{{ user.email }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Phone</th>
-                                            <td>00992283833</td>
+                                            <td>{{ user.user_profile.no_telp }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Address</th>
-                                            <td>House Number 22 Dr. Ababio Street Ghana</td>
+                                            <td>{{ user.user_profile.alamat }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
 
                             </div>
                             <div class="col-md-4">
-                                <img class="img-thumbnail" src="./media/profile-img1.jpg" alt="">
+                                <img class="img-thumbnail" src="{{ user.user_profile.image.url }}" alt="Avatar">
                             </div>
                         </div>
                     </div>

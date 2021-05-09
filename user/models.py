@@ -7,7 +7,7 @@ class User_Profile(models.Model):
     class Meta:
         db_table = 'user-profile'  # nama tabel
         verbose_name_plural = 'Daftar User Profile'
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    account = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)
@@ -15,6 +15,6 @@ class User_Profile(models.Model):
     image = models.ImageField(default='avatar.jpg', upload_to='Profile_images')
     
     prodi_id = models.ForeignKey(Prodi, on_delete=models.CASCADE, related_name='laporan', null=True)
-    
+
     def __str__(self):
-        return f'{self.staff.username}-profile'
+        return f'{self.account.username}-profile'
