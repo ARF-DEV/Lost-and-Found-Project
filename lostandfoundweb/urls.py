@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('dashboard.urls')),
     path('register/', user_view.register, name='user-register'),
+    path('reg-student/', user_view.register_student, name='user-register-student'),
+    path('reg-staff/', user_view.register_staff, name='user-register-staff'),
     path('profile/', user_view.profile, name='user-profile'),
     path('profile/update', user_view.profile_update, name='user-profile-update'),
 

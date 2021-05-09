@@ -7,6 +7,10 @@ from .models import Student, User_Profile
 
 
 def register(request):
+    return render(request, 'user/register_selector.html')
+
+
+def register_student(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         profile_form = User_profileForm(request.POST)
@@ -34,6 +38,43 @@ def register(request):
         form = CreateUserForm()
         profile_form = User_profileForm()
         specialization_form = StudentForm()
+    context = {
+        'form': form,
+        'pForm': profile_form,
+        'sForm': specialization_form
+    }
+    return render(request, 'user/register.html', context)
+
+
+def register_staff(request):
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        profile_form = User_profileForm(request.POST)
+        specialization_form = StaffForm(request.POST)
+
+        if form.is_valid() and specialization_form.is_valid() and profile_form.is_valid():
+            user = form.save()
+
+            new_profile = User_Profile(
+                account=user,
+                alamat=profile_form.cleaned_data['alamat'],
+                no_telp=profile_form.cleaned_data['no_telp'],
+                prodi=profile_form.cleaned_data['prodi']
+            )
+            new_profile.save()
+
+            new_staff = Staff(
+                NIP=specialization_form.cleaned_data['NIP'],
+                Jabatan=specialization_form.cleaned_data['Jabatan'],
+                user=user
+            )
+            new_staff.save()
+
+            return redirect('user-login')
+    else:
+        form = CreateUserForm()
+        profile_form = User_profileForm()
+        specialization_form = StaffForm()
     context = {
         'form': form,
         'pForm': profile_form,

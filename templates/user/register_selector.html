@@ -1,0 +1,16 @@
+{% extends 'partials/base.html' %}
+{% block title %} Register Page {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row lg-5" align='center'>
+        <div class="col-md offset-md-4 h-50" style="margin:15% 0 0 0;">
+            <a href='{% url 'user-register-staff' %}' type="button" class="btn btn-primary btn-lg btn-block">Staff</a>
+            <a href='{% url 'user-register-student' %}' type="button" class="btn btn-danger btn-lg btn-block">Mahasiswa</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
