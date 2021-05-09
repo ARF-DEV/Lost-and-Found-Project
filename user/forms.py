@@ -21,3 +21,9 @@ class StudentForm(forms.Form):
 class StaffForm(forms.Form):
     NIP = forms.CharField(max_length=20)
     jabatan = forms.CharField(max_length=20)
+
+
+class User_profileForm(forms.Form):
+    alamat = forms.CharField(max_length=200)
+    no_telp = forms.CharField(max_length=20)
+    prodi = forms.ModelChoiceField(queryset=Prodi.objects.all())
