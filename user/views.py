@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm, StudentForm, StaffForm, User_profileForm, UserUpdateForm, User_profileUpdateForm
-from .models import Student, User_Profile
+from .models import Student, User_Profile, Staff
 
 # Create your views here.
 
@@ -65,7 +65,7 @@ def register_staff(request):
 
             new_staff = Staff(
                 NIP=specialization_form.cleaned_data['NIP'],
-                Jabatan=specialization_form.cleaned_data['Jabatan'],
+                # Jabatan=specialization_form.cleaned_data['Jabatan'],
                 user=user
             )
             new_staff.save()
