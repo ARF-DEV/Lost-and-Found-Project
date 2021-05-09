@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from dashboard.models import Prodi
+from lostandfoundweb.settings import MEDIA_ROOT
 # Create your models here.
 
 class User_Profile(models.Model):
@@ -12,7 +13,7 @@ class User_Profile(models.Model):
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)
     
-    image = models.ImageField(default='avatar.png', upload_to='Profile_images')
+    image = models.ImageField(default=f"/profile_images/avatar.png", upload_to='profile_images')
     
     prodi = models.ForeignKey(Prodi, on_delete=models.CASCADE, related_name='laporan', null=True)
 
