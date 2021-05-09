@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <div>
     <div class="row mt-4">
         <div class="col-md-4">
@@ -6,8 +7,9 @@
                     Make Request
                 </div>
                 <div class="card-body">
-                    <form method="POST">
-                        
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form | crispy}}
                         <input class="btn btn-info btn-block" type="submit" value="Make Request">
                     </form>
                 </div>
