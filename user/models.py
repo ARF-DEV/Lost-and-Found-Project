@@ -9,14 +9,16 @@ class User_Profile(models.Model):
     class Meta:
         db_table = 'user-profile'  # nama tabel
         verbose_name_plural = 'Daftar User Profile'
-    account = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)
-    
-    image = models.ImageField(default=f"/profile_images/avatar.png", upload_to='profile_images')
-    
-    prodi = models.ForeignKey(Prodi, on_delete=models.CASCADE, related_name='laporan', null=True)
+
+    image = models.ImageField(
+        default=f"/profile_images/avatar.png", upload_to='profile_images')
+
+    prodi = models.ForeignKey(
+        Prodi, on_delete=models.CASCADE, related_name='laporan', null=True)
 
     def __str__(self):
         return f'{self.account.username}-profile'
