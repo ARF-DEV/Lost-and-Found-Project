@@ -4,12 +4,13 @@ from dashboard.models import Prodi
 from lostandfoundweb.settings import MEDIA_ROOT
 # Create your models here.
 
+
 class User_Profile(models.Model):
     class Meta:
         db_table = 'user-profile'  # nama tabel
         verbose_name_plural = 'Daftar User Profile'
     account = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    
+
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)
     
@@ -22,10 +23,18 @@ class User_Profile(models.Model):
 
 
 class Student(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student", null=True)
-    NIM = models.CharField(max_length=20 )
+    class Meta:
+        db_table = 'student'  # nama tabel
+        verbose_name_plural = 'Daftar Mahasiswa'
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="student", null=True)
+    NIM = models.CharField(max_length=20)
+
 
 class Staff(models.Model):
+    class Meta:
+        db_table = 'staff'  # nama tabel
+        verbose_name_plural = 'Daftar Staff & Dosen'
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     NIP = models.CharField(max_length=20)
     Jabatan = models.CharField(max_length=20)
