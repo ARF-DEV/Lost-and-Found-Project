@@ -18,3 +18,13 @@ class User_Profile(models.Model):
 
     def __str__(self):
         return f'{self.account.username}-profile'
+
+
+class Student(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="student", null=True)
+    NIM = models.CharField(max_length=20 )
+
+class Staff(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    NIP = models.CharField(max_length=20)
+    Jabatan = models.CharField(max_length=20)

@@ -14,3 +14,10 @@ class CreateUserForm(UserCreationForm):
     email = forms.EmailField()
 
     #prodi = models.ForeignKey(Prodi, on_delete=models.CASCADE, related_name='prodi', null=True)
+
+class StudentForm(forms.Form):
+    NIM = forms.CharField(max_length=20)
+
+class StaffForm(forms.Form):
+    NIP = forms.CharField(max_length=20)
+    jabatan = forms.CharField(max_length=20)
