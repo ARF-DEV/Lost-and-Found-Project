@@ -9,10 +9,13 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard-index')
+            return redirect('user-login')
     else:
         form = CreateUserForm()
     context={
         'form':form,
     }
     return render(request, 'user/register.html', context)
+
+def profile(request):
+    return render(request, 'user/profile.html')

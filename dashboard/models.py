@@ -85,6 +85,9 @@ class Prodi(models.Model):
         verbose_name_plural = 'Daftar Program Studi'
 
     nama_prodi = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.id} - {self.nama_prodi}'
     #userid -belom
     #adminid -belom
 

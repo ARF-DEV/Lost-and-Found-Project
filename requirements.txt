@@ -2,3 +2,4 @@ django
 djangorestframework
 pymysql
 django-crispy-forms
+Pillow

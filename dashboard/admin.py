@@ -22,4 +22,5 @@ class LaporanTable(admin.ModelAdmin):
 admin.site.register(Barang, BarangTable)
 
 admin.site.register(Laporan, LaporanTable)
+
 admin.site.register(Prodi)
