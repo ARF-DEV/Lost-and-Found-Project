@@ -10,7 +10,7 @@ class User_Profile(models.Model):
         db_table = 'user-profile'  # nama tabel
         verbose_name_plural = 'Daftar User Profile'
     account = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, )
+        User, on_delete=models.CASCADE, null=True, related_name='account_profile')
 
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)

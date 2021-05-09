@@ -31,33 +31,6 @@ LOCATION = (
     ('GKU 1', 'GKU 1'),
     ('LAINNYA', 'LAINNYA'),
 )
-PRODI = (
-    (1, 'Teknik Informatika'),
-    (2, 'Teknik Elektro'),
-    (3, 'Teknologi Pangan'),
-    (4, 'Teknik Geofisika'),
-    (5, 'Teknik Sipil'),
-    (6, 'Teknik Arsitektur'),
-    (7, 'Teknik Mesin'),
-    (8, 'Biologi'),
-    (9, 'Farmasi'),
-    (10, 'Perencanaan Wilayah dan Kota'),
-)
-
-PRODI = (
-    ('Teknik Informatika', 'Teknik Informatika'),
-    ('Teknik Elektro', 'Teknik Elektro'),
-    ('Teknologi Pangan', 'Teknologi Pangan'),
-    ('Teknik Geofisika', 'Teknik Geofisika'),
-    ('Teknik Sipil', 'Teknik Sipil'),
-    ('Teknik Arsitektur', 'Teknik Arsitektur'),
-    ('Teknik Mesin', 'Teknik Mesin'),
-    ('Biologi', 'Biologi'),
-    ('Farmasi', 'Farmasi'),
-    ('Perencanaan Wilayah dan Kota', 'Perancangan Wilayah dan Kota'),
-    ('LAINNYA', 'LAINNYA'),
-
-)
 
 
 class Barang(models.Model):
@@ -70,32 +43,28 @@ class Barang(models.Model):
 
     def __str__(self):
         return f'{self.nama_barang} - {self.id}'
-    # ------------------------- punya laporan---------------------------
+
 
 class Laporan(models.Model):
     class Meta:
         db_table = 'laporan'  # nama tabel
         verbose_name_plural = 'Daftar Laporan'
 
-    status = models.CharField(max_length=10, choices=STATUS, null=True)
+    status = models.CharField(max_length=5, choices=STATUS, null=True)
     isSolved = models.BooleanField(default=False)
     deskripsi_barang = models.TextField(null=True)
     tgl_laporan = models.DateField(auto_now_add=True, null=True)
     lokasi = models.CharField(max_length=10, choices=LOCATION, null=True)
-    
-    barang_id = models.ForeignKey(Barang, on_delete=models.CASCADE, related_name='laporan', null=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='laporan', null=True)
+    image = models.ImageField(
+        default=f"/item/default.png", upload_to='item')
+    barang_id = models.ForeignKey(
+        Barang, on_delete=models.CASCADE, related_name='laporan', null=True)
+    user_id = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='laporan', null=True)
 
     def __str__(self):
         return f'{self.barang_id.nama_barang} - {self.tgl_laporan} - {self.lokasi}'
-class Prodi(models.Model):
-    nama_prodi = models.CharField(max_length=20, choices=STATUS, null=True)
-    #userid -belom
-    #adminid -belom
-    # ------------------------- punya laporan---------------------------
 
-    #id_admin = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='id_admin', default='')
-    #id_user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='barang', null=True, default=None)
 
 class Prodi(models.Model):
     class Meta:
@@ -108,5 +77,3 @@ class Prodi(models.Model):
         return f'{self.id} - {self.nama_prodi}'
     #userid -belom
     #adminid -belom
-
-

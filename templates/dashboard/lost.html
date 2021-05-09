@@ -1,5 +1,5 @@
 {% extends 'partials/base.html' %}
-{% block title %} Lost Page {% endblock %} 
+{% block title %} Found Page {% endblock %} 
 {% block content %} 
 {% include 'partials/topnav.html' %}
     <!--Table-->
@@ -36,49 +36,37 @@
                 <table class="table bg-white">
                     <thead class="bg-info">
                         <tr class="text-white">
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Activity</th>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Lokasi</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Kontak</th>
+                            <th scope="col">Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
+                        {% for item in items %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>{{ item.barang_id.nama_barang }}</td>
+                            <td>{{ item.tgl_laporan }}</td>
+                            <td>{{ item.lokasi }}</td>
+                            <td>{{ item.barang_id.jenis_barang }}</td>
+                            <td>{{ item.user_id.account_profile.no_telp }}</td>
                             <td>
                                 <a class="btn btn-info btn-sm" href="">Edit</a>
                                 <a class="btn btn-danger btn-sm" href="">Delete</a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="">Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="">Delete</a>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
 
     </div>
+
+
+
     <!--End Table-->
 {% endblock %}
