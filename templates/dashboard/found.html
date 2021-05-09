@@ -9,7 +9,7 @@
         <div class="row my-4">
             <div class="col-md-4">
                 <div class="border bg-white p-3">
-                    <h4>Add Products</h4>
+                    <h4>Buat Laporan</h4>
                     <hr>
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -42,7 +42,7 @@
                             <td>{{ item.user_id.account_profile.no_telp }}</td>
                             <td>
                                 <a class="btn btn-info btn-sm" href="">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="">Delete</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'dashboard-laporan-solve' item.id %}">Tutup</a>
                             </td>
                         </tr>
                         {% endfor %}

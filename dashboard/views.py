@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -26,6 +26,7 @@ def index(request):
                 user_id = request.user
             )
             new_laporan.save()
+            return redirect('dashboard-index')
     else:
         form = LaporanForm()
 
@@ -47,7 +48,7 @@ def found(request):
     # WHERE status='FOUND'; "
 
     #items = Laporan.objects.raw(db_query)
-    items = Laporan.objects.filter(status='found')
+    items = Laporan.objects.filter(status='found', isSolved=False)
 
     #-------------------- Laporan Form-------------------
     if request.method == 'POST':
@@ -68,6 +69,7 @@ def found(request):
                 user_id = request.user
             )
             new_laporan.save()
+            return redirect('dashboard-found')
     else:
         form = LaporanForm()
     #-------------------- END Laporan Form-------------------
@@ -87,9 +89,9 @@ def lost(request):
     # WHERE status='LOST'; "
 
     #items = Laporan.objects.raw(db_query)
-    items = Laporan.objects.filter(status='lost')
+    items = Laporan.objects.filter(status='lost', isSolved=False)
 
-#-------------------- Laporan Form-------------------
+    #-------------------- Laporan Form-------------------
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
         if form.is_valid():
@@ -108,6 +110,7 @@ def lost(request):
                 user_id = request.user
             )
             new_laporan.save()
+            return redirect('dashboard-lost')
     else:
         form = LaporanForm()
     #-------------------- END Laporan Form-------------------
@@ -121,5 +124,25 @@ def lost(request):
 
 @login_required()
 def solved(request):
-    # belom
-    return render(request, 'dashboard/solved.html')
+    # db_query = "SELECT * FROM laporan NATURAL JOIN
+    # (SELECT * FROM auth_user NATURAL JOIN barang)
+    # WHERE isSolve=true; "
+
+    #items = Laporan.objects.raw(db_query)
+    items = Laporan.objects.filter(isSolved=True)
+    context = {
+        'items': items,
+    }
+    return render(request, 'dashboard/solved.html', context)
+
+
+def laporan_solve(request, pk):
+    item = Laporan.objects.get(id=pk)
+    if request.method=='POST':
+        item.isSolved = True
+        item.save()
+        return redirect('dashboard-solved')
+    return render(request, 'dashboard/laporan_solve.html')
+
+def laporan_view(request, pk):
+    pass
