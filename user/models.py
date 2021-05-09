@@ -9,7 +9,7 @@ class User_Profile(models.Model):
     class Meta:
         db_table = 'user-profile'  # nama tabel
         verbose_name_plural = 'Daftar User Profile'
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    account = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     alamat = models.CharField(max_length=200)
     no_telp = models.CharField(max_length=20, null=True)
