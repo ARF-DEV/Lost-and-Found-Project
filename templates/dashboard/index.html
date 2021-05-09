@@ -1,7 +1,11 @@
 {% extends 'partials/base.html' %}
+
 {% block title %}Dashboard Page{% endblock %}
 
 {% block content %} 
+
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% include 'partials/topnav.html' %}
     <!--Graphs-->
     <div class="container">
         <div class="row my-5">
@@ -96,4 +100,7 @@
         </div>
     </div>
     <!--End Graphs-->
+{% else %}
+    {% include 'dashboard/user-index.html' %}
+{% endif %}
 {% endblock %}
