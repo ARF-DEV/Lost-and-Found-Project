@@ -12,7 +12,11 @@
                     <form method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
+                        
+                        <p>Belum punya akun? Daftar <a href="register/">Disini</a></p>
                         <input class="btn btn-success" type="submit" value="Login">
+
+                        
                     </form>
                 </div>
             </div>
