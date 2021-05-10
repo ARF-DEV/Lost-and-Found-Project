@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from .forms import CreateUserForm, StudentForm, StaffForm, User_profileForm, UserUpdateForm, User_profileUpdateForm
 from .models import Student, User_Profile, Staff
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('/profile')
+    
     return render(request, 'user/register_selector.html')
 
 
 def register_student(request):
+
+    if request.user.is_authenticated:
+        return redirect('/profile')
+
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         profile_form = User_profileForm(request.POST)
@@ -32,7 +40,7 @@ def register_student(request):
                 user=user
             )
             new_student.save()
-
+            messages.success(request, 'User berhasil terdaftar' )
             return redirect('user-login')
     else:
         form = CreateUserForm()
@@ -47,6 +55,9 @@ def register_student(request):
 
 
 def register_staff(request):
+    if request.user.is_autenticated():
+        return redirect('/profile')
+
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         profile_form = User_profileForm(request.POST)
@@ -69,7 +80,7 @@ def register_staff(request):
                 user=user
             )
             new_staff.save()
-
+            messages.success(request, 'User berhasil terdaftar')
             return redirect('user-login')
     else:
         form = CreateUserForm()
@@ -82,11 +93,11 @@ def register_staff(request):
     }
     return render(request, 'user/register.html', context)
 
-
+@login_required()
 def profile(request):
     return render(request, 'user/profile.html')
 
-
+@login_required()
 def profile_update(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
