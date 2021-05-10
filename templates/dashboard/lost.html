@@ -49,7 +49,7 @@
                             <td>{{ item.barang_id.jenis_barang }}</td>
                             <td>{{ item.user_id.account_profile.no_telp }}</td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="">Detail</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'dashboard-laporan-detail' item.id %}">Detail</a>
                                 {% if user.id == item.user_id.id %}
                                 <a class="btn btn-danger btn-sm" href="{% url 'dashboard-laporan-solve' item.id %}">Tutup</a>
                                 {% endif %}
