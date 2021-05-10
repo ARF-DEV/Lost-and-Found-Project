@@ -138,7 +138,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = (BASE_DIR/"assert")
 
 MEDIA_ROOT = (BASE_DIR / 'media')
-print(f"MEDIA ROOT : {MEDIA_ROOT}")
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'dashboard-index'

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import *
 from .forms import LaporanForm
 # Create your views here.
@@ -8,6 +9,7 @@ from .forms import LaporanForm
 
 @login_required()
 def index(request):
+    
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
         if form.is_valid():
@@ -69,6 +71,7 @@ def found(request):
                 user_id = request.user
             )
             new_laporan.save()
+            messages.success(request, f'{new_barang.nama_barang} berhasil ditambahkan' )
             return redirect('dashboard-found')
     else:
         form = LaporanForm()
@@ -110,6 +113,7 @@ def lost(request):
                 user_id = request.user
             )
             new_laporan.save()
+            messages.success(request, f'{new_barang.nama_barang} berhasil ditambahkan' )
             return redirect('dashboard-lost')
     else:
         form = LaporanForm()
