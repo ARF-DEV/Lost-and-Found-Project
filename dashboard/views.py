@@ -70,11 +70,11 @@ def index(request):
         item_lokasi.append(isi['dcount'])
 
     data_solved = Laporan.objects.values('isSolved').annotate(dcount=Count('isSolved'))
-    print(data_solved)
+    #print(data_solved)
     item_solved = []
     for isi in data_solved:
         item_solved.append(isi['dcount'])
-    print(item_solved)
+    #print(item_solved)
     #----------------chart visualization
 
     # db_query = "SELECT * FROM laporan NATURAL JOIN
