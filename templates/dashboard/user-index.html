@@ -8,40 +8,36 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Orders Records
+                    Laporan Terkini
                 </div>
                 <div class="card-body">
                     <table class="table bg-white">
                         <thead class="bg-info text-white">
                             <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Nama Barang</th>
+                                <th scope="col">Lokasi</th>
+                                <th scope="col">Kategori</th>
+                                <th scope="col">Kontak</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <tr>
-                                <td>Book</td>
-                                <td>Stationary</td>
-                                <td>10</td>
-                            </tr>
-							<tr>
-                                <td>Book</td>
-                                <td>Stationary</td>
-                                <td>10</td>
-                            </tr>
-							<tr>
-                                <td>Book</td>
-                                <td>Stationary</td>
-                                <td>10</td>
-                            </tr>
-							<tr>
-                                <td>Book</td>
-                                <td>Stationary</td>
-                                <td>10</td>
-                            </tr>
-                            
+                            {% for item in items %}
+                        <tr>
+                            <td>{{ item.status }}</td>
+                            <td>{{ item.barang_id.nama_barang }}</td>
+                            <td>{{ item.lokasi }}</td>
+                            <td>{{ item.barang_id.jenis_barang }}</td>
+                            <td>{{ item.user_id.account_profile.no_telp }}</td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="{% url 'dashboard-laporan-detail' item.id %}">Detail</a>
+                                {% if user.id == item.user_id.id or user.is_superuser %}
+                                <a class="btn btn-danger btn-sm" href="{% url 'dashboard-laporan-solve' item.id %}">Tutup</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.contrib import messages
 from .models import *
 from .forms import LaporanForm
+import datetime
 # Create your views here.
 
 
@@ -36,6 +38,52 @@ def index(request):
             return redirect('dashboard-index')
     else:
         form = LaporanForm()
+    #------------------END FORM------------------------------------
+
+    #----------------chart visualization
+
+    #ambil data laporan untuk chart berdasarkan status
+    #select status,count(status) as dcount from laporan group by status
+    data_status = Laporan.objects.values('status').annotate(dcount=Count('status'))
+    item_status = []
+    label_status = []
+    for isi in data_status:
+        label_status.append(isi['status'])
+        item_status.append(isi['dcount'])
+
+    #ambil data barang untuk chart berdasarkan jenis barang
+    #select jenis_barang,count(jenis_barang) as dcount from laporan group by jenis_barang
+    data_kategori = Barang.objects.values('jenis_barang').annotate(dcount=Count('jenis_barang'))
+    item_kategori = []
+    label_kategori = []
+    for isi in data_kategori:
+        label_kategori.append(isi['jenis_barang'])
+        item_kategori.append(isi['dcount'])
+
+    #ambil data laporan untuk chart berdasarkan lokasi
+    #select lokasi,count(lokasi) as dcount from laporan group by lokasi
+    data_lokasi = Laporan.objects.values('lokasi').annotate(dcount=Count('lokasi'))
+    item_lokasi = []
+    label_lokasi = []
+    for isi in data_lokasi:
+        label_lokasi.append(isi['lokasi'])
+        item_lokasi.append(isi['dcount'])
+
+    data_solved = Laporan.objects.values('isSolved').annotate(dcount=Count('isSolved'))
+    print(data_solved)
+    item_solved = []
+    for isi in data_solved:
+        item_solved.append(isi['dcount'])
+    print(item_solved)
+    #----------------chart visualization
+
+    # db_query = "SELECT * FROM laporan NATURAL JOIN
+    # (SELECT * FROM auth_user NATURAL JOIN barang)
+    # WHERE tgl_laporan=today; "
+
+    #items = Laporan.objects.raw(db_query)
+    today= datetime.date.today()
+    items = Laporan.objects.filter(tgl_laporan=today, isSolved=False)
 
     context = {
         'form' : form,
@@ -43,6 +91,17 @@ def index(request):
         'found_counter' : found_counter,
         'lost_counter' : lost_counter, 
         'solved_counter' : solved_counter,
+    #----------------------------------------
+        'data' : data_status,
+        'label_status': label_status,
+        'item_status' : item_status,
+        'label_kategori': label_kategori,
+        'item_kategori': item_kategori,
+        'label_lokasi': label_lokasi,
+        'item_lokasi' : item_lokasi,
+        'item_solved' : item_solved,
+     #----------------------------------------
+        'items' : items,
     }
     return render(request, 'dashboard/index.html', context)
 

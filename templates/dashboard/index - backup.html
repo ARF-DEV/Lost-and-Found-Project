@@ -17,7 +17,7 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header bg-info text-white">
-                        GRAFIK RASIO LOST-FOUND
+                        PIE
                     </div>
                 <div class="card-body bg-white">
                     <canvas id="myChart1" width="400" height="300"></canvas>
@@ -26,19 +26,25 @@
                         var myChart1 = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: {{label_status|safe}},
+                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                                 datasets: [{
                                     label: 'Products',
-                                    data: {{item_status|safe}},
+                                    data: [12, 19, 3, 5, 2, 3],
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 1)',
                                         'rgba(54, 162, 235, 1)',
-                                        
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
                                     ],
                                     borderColor: [
                                         'rgba(255, 99, 132, 1)',
                                         'rgba(54, 162, 235, 1)',
-                                        
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
                                     ],
                                     borderWidth: 1
                                 }]
@@ -58,11 +64,10 @@
             </div>
             </div>
             <!--PIEEEE-->
-            <!--BAR-->
             <div class="col-6">
                 <div class="card">
                     <div class="card-header bg-info text-white">
-                        GRAFIK KATEGORI BARANG 
+                        CHART
                     </div>
                     <div class="card-body bg-white">
                         <canvas id="myChart" width="400" height="300"></canvas>
@@ -71,10 +76,10 @@
                             var myChart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: {{ label_kategori|safe }},
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                                     datasets: [{
-                                        label: 'Jenis Barang',
-                                        data: {{ item_kategori|safe }},
+                                        label: 'Products',
+                                        data: [12, 19, 3, 5, 2, 3],
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 1)',
                                             'rgba(54, 162, 235, 1)',
@@ -108,66 +113,18 @@
                     </div>
                 </div>
             </div>
-            <!--BAR-->
+            
         </div>
         
         <!-- row bawah -->
         
         <div class="row my-5">
-                        <!--BAR-->
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header bg-info text-white">
-                                    GRAFIK STATUS LAPORAN
-                                </div>
-                                <div class="card-body bg-white">
-                                    <canvas id="myChart3" width="400" height="300"></canvas>
-                                    <script>
-                                        var ctx = document.getElementById('myChart3').getContext('2d');
-                                        var myChart = new Chart(ctx, {
-                                            type: 'bar',
-                                            data: {
-                                                labels: ['Solved', 'Unsolved'],
-                                                datasets: [{
-                                                    label: 'Products',
-                                                    data: {{ item_solved|safe }},
-                                                    backgroundColor: [
-                                                        'rgba(255, 99, 132, 1)',
-                                                        'rgba(255, 206, 86, 1)',
-                                                        'rgba(75, 192, 192, 1)',
-                                                        'rgba(153, 102, 255, 1)',
-                                                        'rgba(255, 159, 64, 1)'
-                                                    ],
-                                                    borderColor: [
-                                                        'rgba(255, 99, 132, 1)',
-                                                        'rgba(255, 206, 86, 1)',
-                                                        'rgba(75, 192, 192, 1)',
-                                                        'rgba(153, 102, 255, 1)',
-                                                        'rgba(255, 159, 64, 1)'
-                                                    ],
-                                                    borderWidth: 1
-                                                }]
-                                            },
-                                            options: {
-                                                scales: {
-                                                    yAxes: [{
-                                                        ticks: {
-                                                            beginAtZero: true
-                                                        }
-                                                    }]
-                                                }
-                                            }
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-                        <!--BAR-->
+            
             <!--PIEEEE-->
             <div class="col-6">
                 <div class="card">
                     <div class="card-header bg-info text-white">
-                        GRAFIK LOKASI LAPORAN
+                        PIE
                     </div>
                 <div class="card-body bg-white">
                     <canvas id="myChart2" width="400" height="300"></canvas>
@@ -176,10 +133,10 @@
                         var myChart1 = new Chart(ctx, {
                             type: 'pie',
                             data: {
-                                labels: {{label_lokasi|safe}},
+                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                                 datasets: [{
                                     label: 'Products',
-                                    data: {{item_lokasi|safe}},
+                                    data: [12, 19, 3, 5, 2, 3],
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 1)',
                                         'rgba(54, 162, 235, 1)',
@@ -214,8 +171,55 @@
             </div>
             </div>
             <!--PIEEEE-->
-
-
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        CHART
+                    </div>
+                    <div class="card-body bg-white">
+                        <canvas id="myChart3" width="400" height="300"></canvas>
+                        <script>
+                            var ctx = document.getElementById('myChart3').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: 'Products',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
