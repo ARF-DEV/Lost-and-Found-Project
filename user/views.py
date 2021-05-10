@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.user.is_authenticated:
-        return redirect('/profile')
+        return redirect('user-profile')
     
     return render(request, 'user/register_selector.html')
 
@@ -17,7 +17,7 @@ def register(request):
 def register_student(request):
 
     if request.user.is_authenticated:
-        return redirect('/profile')
+        return redirect('user-profile')
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -55,8 +55,8 @@ def register_student(request):
 
 
 def register_staff(request):
-    if request.user.is_autenticated:
-        return redirect('/profile')
+    if request.user.is_authenticated:
+        return redirect('user-profile')
 
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
