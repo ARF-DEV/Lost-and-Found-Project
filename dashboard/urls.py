@@ -8,5 +8,6 @@ urlpatterns = [
     path('found/', views.found, name='dashboard-found'),
     path('solve/<int:pk>', views.laporan_solve, name='dashboard-laporan-solve'),
     path('solved/', views.solved, name='dashboard-solved'),
+    path('laporan/<int:pk>', views.laporan_detail, name='dashboard-laporan-detail'),
 
 ]

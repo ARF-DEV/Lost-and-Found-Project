@@ -1,0 +1,93 @@
+{% extends 'partials/base.html' %}
+{% block title %} Found Page {% endblock %} 
+{% load crispy_forms_tags %}
+{% block content %} 
+{% include 'partials/topnav.html' %}
+    <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-4">
+                {% for message in messages %}
+                {% if message %}
+                <div class = "alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                <div class="border bg-white p-3">
+                    <h4>Buat Laporan</h4>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-success btn-block" type="submit" value="Buat Laporan">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        Laporan
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <span class="h4"> Detail laporan </span> 
+                                <hr>
+
+                                <table class="table bg-white table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">No</th>
+                                            <td>{{ laporan.id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Nama Barang</th>
+                                            <td>{{ laporan.barang_id.nama_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Kategori</th>
+                                            <td>{{ laporan.barang_id.jenis_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Tanggal Laporan</th>
+                                            <td>{{ laporan.tgl_laporan }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Lokasi</th>
+                                            <td>{{ laporan.lokasi }}</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th scope="row">Pembuat Laporan</th>
+                                            <td>{{ laporan.user_id.username }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Kontak</th>
+                                            <td>{{ laporan.user_id.account_profile.no_telp }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Deskripsi</th>
+                                            <td>{{ laporan.deskripsi_barang }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="col-md-4">
+                                <img class="img-thumbnail" src="{{ laporan.image.url }}" alt="Avatar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--End Table-->
+{% endblock %}

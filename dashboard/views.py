@@ -9,7 +9,7 @@ from .forms import LaporanForm
 
 @login_required()
 def index(request):
-    
+    #------------- FOMR---------------------
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
         if form.is_valid():
@@ -148,5 +148,35 @@ def laporan_solve(request, pk):
         return redirect('dashboard-solved')
     return render(request, 'dashboard/laporan_solve.html')
 
-def laporan_view(request, pk):
-    pass
+def laporan_detail(request, pk):
+    laporan = Laporan.objects.get(id=pk)
+
+    #-------------------- Laporan Form-------------------
+    if request.method == 'POST':
+        form = LaporanForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_barang = Barang(
+                nama_barang = form.cleaned_data['nama_barang'],
+                jenis_barang = form.cleaned_data['jenis_barang']
+            )
+            new_barang.save()
+            new_laporan = Laporan(
+                status = form.cleaned_data['status'],
+                deskripsi_barang = form.cleaned_data['deskripsi'],
+                lokasi = form.cleaned_data['lokasi'],
+                image = form.cleaned_data.get('foto'),
+                    
+                barang_id = new_barang,
+                user_id = request.user
+            )
+            new_laporan.save()
+            messages.success(request, f'{new_barang.nama_barang} berhasil ditambahkan' )
+            return redirect('dashboard-found')
+    else:
+        form = LaporanForm()
+    #-------------------- END Laporan Form-------------------
+    context = {
+        'laporan' : laporan,
+        'form' : form,
+    }
+    return render(request, 'dashboard/laporan_detail.html', context)
