@@ -55,7 +55,7 @@ def register_student(request):
 
 
 def register_staff(request):
-    if request.user.is_autenticated():
+    if request.user.is_autenticated:
         return redirect('/profile')
 
     if request.method == 'POST':
