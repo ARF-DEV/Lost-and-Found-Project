@@ -85,14 +85,16 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lostandfound',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'lostfound',
+        'PASSWORD': 'basis-data-buset',
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }
 }
 
-
+#CREATE USER 'lostfound'@'localhost' IDENTIFIED BY 'basis-data-buset';
+#GRANT ALL PRIVILEGES ON * . * TO 'lostfound'@'localhost';
+#FLUSH PRIVILEGES;
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
