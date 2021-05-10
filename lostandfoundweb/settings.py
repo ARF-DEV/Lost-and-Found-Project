@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'lostandfoundweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lostandfound-web',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'lostandfound',
+        'USER': 'lostfound',
+        'PASSWORD': 'basis-data-buset',
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }
