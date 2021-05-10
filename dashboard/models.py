@@ -8,8 +8,7 @@ KATEGORI = (
     ('Alat Tulis', 'Alat Tulis'),
     ('Buku', 'Buku'),
     ('Kunci Kendaraan', 'Kunci Kendaraan'),
-    ('KATEGORI 5', 'KATEGORI 5'),
-    ('KATEGORI 6', 'KATEGORI 6'),
+    ('Lainnya', 'Lainnya'),
 )
 
 
