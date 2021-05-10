@@ -240,7 +240,9 @@ def laporan_solve(request, pk):
 
 def laporan_detail(request, pk):
     laporan = Laporan.objects.get(id=pk)
-
+    found_counter = Laporan.objects.filter(status='found', isSolved=False).count()
+    lost_counter = Laporan.objects.filter(status='lost', isSolved=False).count()
+    solved_counter = Laporan.objects.filter(isSolved=True).count()
     #-------------------- Laporan Form-------------------
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
