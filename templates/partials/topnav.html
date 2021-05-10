@@ -24,7 +24,7 @@
                                 <a class="text-decoration-none text-dark" href="{% url 'dashboard-found' %}">
                                     <div class="card my-card shadow text-center p-3">
                                         <h4>Found<i class="fas fa-box"></i></h4>
-                                        <h3>4</h3>
+                                        <h3>{{ found_counter }}</h3>
                                     </div>
                                 </a>
                             </div>
@@ -32,7 +32,7 @@
                                 <a class="text-decoration-none text-dark" href="{% url 'dashboard-lost' %}">
                                     <div class="card my-card shadow text-center p-3">
                                         <h4>Lost <i class="fas fa-box"></i></h4>
-                                        <h3>4</h3>
+                                        <h3>{{ lost_counter }}</h3>
                                     </div>
                                 </a>
                             </div>
@@ -40,7 +40,7 @@
                                 <a class="text-decoration-none text-dark" href="{% url 'dashboard-solved' %}">
                                     <div class="card my-card shadow text-center p-3">
                                         <h4>Solved<i class="fas fa-box"></i></h4>
-                                        <h3>4</h3>
+                                        <h3>{{ solved_counter }}</h3>
                                     </div>
                                 </a>
                             </div>

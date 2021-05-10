@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <meta http-equiv="REFRESH" content="0; url={% url 'user-profile' %}">
+        <meta http-equiv="REFRESH" content="0; url={% url 'dashboard-index' %}">
     {% else %}
     <div class="container">
         <div class="row mt-5">

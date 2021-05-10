@@ -9,6 +9,11 @@ from .forms import LaporanForm
 
 @login_required()
 def index(request):
+    laporan = Laporan.objects.all()
+    found_counter = Laporan.objects.filter(status='found', isSolved=False).count()
+    lost_counter = Laporan.objects.filter(status='lost', isSolved=False).count()
+    solved_counter = Laporan.objects.filter(isSolved=True).count()
+
     #------------- FOMR---------------------
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
@@ -33,7 +38,11 @@ def index(request):
         form = LaporanForm()
 
     context = {
-        'form' : form
+        'form' : form,
+        'laporan' : laporan,
+        'found_counter' : found_counter,
+        'lost_counter' : lost_counter, 
+        'solved_counter' : solved_counter,
     }
     return render(request, 'dashboard/index.html', context)
 
@@ -51,6 +60,10 @@ def found(request):
 
     #items = Laporan.objects.raw(db_query)
     items = Laporan.objects.filter(status='found', isSolved=False)
+
+    found_counter = Laporan.objects.filter(status='found', isSolved=False).count()
+    lost_counter = Laporan.objects.filter(status='lost', isSolved=False).count()
+    solved_counter = Laporan.objects.filter(isSolved=True).count()
 
     #-------------------- Laporan Form-------------------
     if request.method == 'POST':
@@ -80,6 +93,9 @@ def found(request):
     context = {
         'items': items,
         'form' : form,
+        'found_counter' : found_counter,
+        'lost_counter' : lost_counter, 
+        'solved_counter' : solved_counter,
     }
 
     return render(request, 'dashboard/found.html', context)
@@ -94,6 +110,10 @@ def lost(request):
     #items = Laporan.objects.raw(db_query)
     items = Laporan.objects.filter(status='lost', isSolved=False)
 
+
+    found_counter = Laporan.objects.filter(status='found', isSolved=False).count()
+    lost_counter = Laporan.objects.filter(status='lost', isSolved=False).count()
+    solved_counter = Laporan.objects.filter(isSolved=True).count()
     #-------------------- Laporan Form-------------------
     if request.method == 'POST':
         form = LaporanForm(request.POST, request.FILES)
@@ -122,6 +142,9 @@ def lost(request):
     context = {
         'items': items,
         'form' : form,
+        'found_counter' : found_counter,
+        'lost_counter' : lost_counter, 
+        'solved_counter' : solved_counter,
     }
     return render(request, 'dashboard/lost.html', context)
 
@@ -134,8 +157,16 @@ def solved(request):
 
     #items = Laporan.objects.raw(db_query)
     items = Laporan.objects.filter(isSolved=True)
+
+
+    found_counter = Laporan.objects.filter(status='found', isSolved=False).count()
+    lost_counter = Laporan.objects.filter(status='lost', isSolved=False).count()
+    solved_counter = Laporan.objects.filter(isSolved=True).count()
     context = {
         'items': items,
+        'found_counter' : found_counter,
+        'lost_counter' : lost_counter, 
+        'solved_counter' : solved_counter,
     }
     return render(request, 'dashboard/solved.html', context)
 
@@ -178,5 +209,8 @@ def laporan_detail(request, pk):
     context = {
         'laporan' : laporan,
         'form' : form,
+        'found_counter' : found_counter,
+        'lost_counter' : lost_counter, 
+        'solved_counter' : solved_counter,
     }
     return render(request, 'dashboard/laporan_detail.html', context)

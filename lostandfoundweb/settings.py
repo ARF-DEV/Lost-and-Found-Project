@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-grmwek5&n7&3&%o*)h$brz*p93a!gn)@7y!q@_*oi%q)p)rhv+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.221.202.243', 'ec2-52-221-202-243.ap-southeast-1.compute.amazonaws.com']
+ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['52.221.202.243', 'ec2-52-221-202-243.ap-southeast-1.compute.amazonaws.com']
 
 
 # Application definition
@@ -84,9 +85,9 @@ WSGI_APPLICATION = 'lostandfoundweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lostandfound',
-        'USER': 'lostfound',
-        'PASSWORD': 'basis-data-buset',
+        'NAME': 'lostandfound-web',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }

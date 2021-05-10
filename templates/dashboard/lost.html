@@ -50,7 +50,7 @@
                             <td>{{ item.user_id.account_profile.no_telp }}</td>
                             <td>
                                 <a class="btn btn-info btn-sm" href="{% url 'dashboard-laporan-detail' item.id %}">Detail</a>
-                                {% if user.id == item.user_id.id %}
+                                {% if user.id == item.user_id.id or user.is_superuser %}
                                 <a class="btn btn-danger btn-sm" href="{% url 'dashboard-laporan-solve' item.id %}">Tutup</a>
                                 {% endif %}
                             </td>
