@@ -8,9 +8,6 @@ class StudentTable(admin.ModelAdmin):
     def nama_mahasiswa(self, obj):
         return obj.user.first_name + ' ' + obj.user.last_name
 
-admin.site.register(User_Profile)
-admin.site.register(Student)
-admin.site.register(Staff)
 class StaffTable(admin.ModelAdmin):
     list_display = ["id", "nama_staff", "NIP","Jabatan"]
 
