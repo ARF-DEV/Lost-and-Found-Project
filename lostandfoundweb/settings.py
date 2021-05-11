@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-grmwek5&n7&3&%o*)h$brz*p93a!gn)@7y!q@_*oi%q)p)rhv+
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['52.221.202.243', 'ec2-52-221-202-243.ap-southeast-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['52.221.202.243', 'ec2-52-221-202-243.ap-southeast-1.compute.amazonaws.com', '127.0.0.1']
 
 
 # Application definition
@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'lostandfoundweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lostandfound',
-        'USER': 'lostfound',
-        'PASSWORD': 'basis-data-buset',
-        'HOST': '127.0.0.1',
+        'NAME': 'lostandfound-web',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': 3306,
     }
 }
@@ -140,7 +140,7 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = (BASE_DIR/"assert")
 
-MEDIA_ROOT = (BASE_DIR / 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'dashboard-index'
