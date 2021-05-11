@@ -57,7 +57,7 @@ class Laporan(models.Model):
     tgl_laporan = models.DateField(auto_now_add=True, null=True)
     lokasi = models.CharField(max_length=10, choices=LOCATION, null=True)
     image = models.ImageField(
-        default=f"/item/default.png", upload_to='item')
+        default=f"/item/default.jpg", upload_to='item')
     barang_id = models.ForeignKey(
         Barang, on_delete=models.CASCADE, related_name='laporan', null=True)
     user_id = models.ForeignKey(
