@@ -76,7 +76,7 @@ def register_staff(request):
 
             new_staff = Staff(
                 NIP=specialization_form.cleaned_data['NIP'],
-                Jabatan=specialization_form.cleaned_data['Jabatan'],
+                Jabatan=specialization_form.cleaned_data['jabatan'],
                 user=user
             )
             new_staff.save()
