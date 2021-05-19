@@ -4,10 +4,12 @@ from .models import Barang, Laporan, Prodi
 admin.site.site_header = 'Lost-Found Admin Dashboard'
 
 
+"SELECT nama_barang,jenis_baran FROM barang"
 class BarangTable(admin.ModelAdmin):
     list_display = ["nama_barang", "jenis_barang",]
     list_filter = ["jenis_barang"]
 
+"SELECT nama_barang,jenis_barang,tgl_laporan,lokasi,isSolved,status FROM laporan NATURAL JOIN barang"
 class LaporanTable(admin.ModelAdmin):
     list_display = ["nama_barang", "jenis_barang","tgl_laporan", "lokasi", "isSolved", "status"]
     list_filter = [ "lokasi", "tgl_laporan", "isSolved", "status","barang_id__jenis_barang"]
